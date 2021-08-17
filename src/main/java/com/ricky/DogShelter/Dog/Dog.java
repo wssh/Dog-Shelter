@@ -14,15 +14,16 @@ public class Dog {
     private String breed;
     private String age;
     private String gender;
-    private Status status = Status.AVAILABLE;
+    private Status status;
 
     public Dog(){}
 
-    public Dog(String name, String breed, String age, String gender){
+    public Dog(String name, String breed, String age, String gender, Status status){
         this.name = name;
         this.breed = breed;
         this.age = age;
         this.gender = gender;
+        this.status = status;
     }
 
     public Long getId() {

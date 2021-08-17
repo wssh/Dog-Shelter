@@ -1,8 +1,10 @@
 package com.ricky.DogShelter;
 
+import com.github.javafaker.Faker;
 
 import com.ricky.DogShelter.Dog.Dog;
 import com.ricky.DogShelter.Dog.DogRepository;
+import com.ricky.DogShelter.Dog.Status;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,20 +14,18 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class LoadDatabase {
+    int n = 0;
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
-
+    Faker faker = new Faker();
     @Bean
     CommandLineRunner initDatabase(DogRepository dogRepository) {
+        while(n < 33){
+            dogRepository.save(new Dog(faker.dog().name(), faker.dog().breed(), faker.dog().age(), faker.dog().gender(), Status.AVAILABLE));
+            dogRepository.save(new Dog(faker.dog().name(), faker.dog().breed(), faker.dog().age(), faker.dog().gender(), Status.ON_HOLD));
+            dogRepository.save(new Dog(faker.dog().name(), faker.dog().breed(), faker.dog().age(), faker.dog().gender(), Status.ADOPTED));
+            n++;
+        }
         return args -> {
-            dogRepository.save(new Dog("Jackie", "Chihuahua", "4", "female"));
-            dogRepository.save(new Dog("William", "Labrador Retriever", "3", "male"));
-            dogRepository.save(new Dog("Hyunwoo", "Boxer", "3", "male"));
-            dogRepository.save(new Dog("Nadine", "Dachshund", "2", "female"));
-            dogRepository.save(new Dog("Yuki", "Dalmatian", "4", "male"));
-            dogRepository.save(new Dog("Alex", "Boston Terrier", "3", "male"));
-            dogRepository.save(new Dog("Sissela", "Yorkshire Terrier", "1", "female"));
-            dogRepository.save(new Dog("Hyejin", "Maltese", "1", "female"));
-            dogRepository.save(new Dog("Nathapon", "Rottweiler", "6", "male"));
             dogRepository.findAll().forEach(dog -> log.info("Preloaded " + dog));
         };
     }
