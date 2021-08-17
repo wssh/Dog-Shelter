@@ -46,7 +46,7 @@ public class DogController {
         return CollectionModel.of(dogs, linkTo(methodOn(DogController.class).all()).withSelfRel());
     }
 
-    @GetMapping("/dog/foreverhomed") //get available dogs
+    @GetMapping("/dog/foreverhomed") //get adopted dogs
     CollectionModel<EntityModel<Dog>> adopted() {
         List<EntityModel<Dog>> dogs = dogRepository.findByStatus(Status.ADOPTED).stream()
             .map(dogAssembler::toModel)
