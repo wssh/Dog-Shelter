@@ -71,7 +71,6 @@ public class DogController {
             dog.setAge(newDog.getAge());
             dog.setBreed(newDog.getBreed());
             dog.setGender(newDog.getGender());
-            dog.setStatus(newDog.getStatus());
             return dogRepository.save(dog);
         })
         .orElseGet(() -> {

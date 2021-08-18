@@ -18,6 +18,14 @@ public class Dog {
 
     public Dog(){}
 
+    public Dog(String name, String breed, String age, String gender){
+        this.name = name;
+        this.breed = breed;
+        this.age = age;
+        this.gender = gender;
+        status = Status.AVAILABLE;
+    }
+
     public Dog(String name, String breed, String age, String gender, Status status){
         this.name = name;
         this.breed = breed;
