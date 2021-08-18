@@ -14,13 +14,14 @@ public class DogAssembler implements RepresentationModelAssembler<Dog, EntityMod
             linkTo(methodOn(DogController.class).one(dog.getId())).withSelfRel(),
             linkTo(methodOn(DogController.class).all()).withRel("dogs"));
 
-        // Conditional links based on state of the order
+        // Conditional links based on state of the dog
         if (dog.getStatus() == Status.AVAILABLE){
             dogModel.add(linkTo(methodOn(DogController.class).hold(dog.getId())).withRel("hold"));
+            dogModel.add(linkTo(methodOn(DogController.class).adopt(dog.getId())).withRel("adopt"));
         }
         else if (dog.getStatus() == Status.ON_HOLD) {
-        dogModel.add(linkTo(methodOn(DogController.class).cancel(dog.getId())).withRel("cancel"));
-        dogModel.add(linkTo(methodOn(DogController.class).adopt(dog.getId())).withRel("adopt"));
+            dogModel.add(linkTo(methodOn(DogController.class).cancel(dog.getId())).withRel("cancel"));
+            dogModel.add(linkTo(methodOn(DogController.class).adopt(dog.getId())).withRel("adopt"));
         }
         return dogModel;
     } 
