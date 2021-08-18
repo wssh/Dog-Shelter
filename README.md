@@ -11,24 +11,29 @@ Gets a list of all dogs, regardless of their status, in the shelter database.
 
 #### Example Response
 ```json
+...
 {
-    "id": 1,
-    "name": "Ruby",
+    "id": 16,
+    "name": "Milo",
     "breed": "French Bulldog",
     "age": "puppy",
     "gender": "male",
     "status": "AVAILABLE",
     "_links": {
         "self": {
-            "href": "http://localhost:8090/dog/1"
+            "href": "http://localhost:8090/dog/16"
         },
         "dogs": {
             "href": "http://localhost:8090/dog"
         },
         "hold": {
-            "href": "http://localhost:8090/dog/1/hold"
-        }
+            "href": "http://localhost:8090/dog/16/hold"
+        },
+        "adopt": {
+            "href": "http://localhost:8090/dog/16/adopt"
     }
+}
+...
 ```
 
 #### Method: `POST`
